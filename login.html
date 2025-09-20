@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de acceso</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url("flores.png/fondo.jpeg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: rgba(0,0,0,0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.5);
+      width: 300px;
+      color: white;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #00c6ff;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0072ff;
+    }
+    .error {
+      color: #ff4d4d;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <!-- Cambié "usuario" por "fecha" -->
+      <input type="date" id="fecha" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <p class="error" id="errorMsg">Fecha o contraseña incorrecta</p>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let fecha = document.getElementById("fecha").value;   // nueva fecha
+      let password = document.getElementById("password").value;
+      let errorMsg = document.getElementById("errorMsg");
+
+      // Fecha válida en formato YYYY-MM-DD
+      let fechaValida = "1999-04-11"; 
+      let passwordValida = "12345";
+
+      if(fecha === fechaValida && password === passwordValida){
+  localStorage.setItem("logueado", "true"); // guardamos estado
+  window.location.href = "index.html"; 
+} else {
+  errorMsg.style.display = "block";
+}
+
+    });
+  </script>
+
+</body>
+</html>
