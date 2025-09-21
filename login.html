@@ -61,8 +61,8 @@
   <div class="form-container">
     <h2>Iniciar Sesión</h2>
     <form id="loginForm">
-      <!-- Cambié "usuario" por "fecha" -->
-      <input type="date" id="fecha" required>
+      <!-- Cambié a text para que sea DD/MM/YYYY -->
+      <input type="text" id="fecha" placeholder="DD/MM/YYYY" required>
       <input type="password" id="password" placeholder="Contraseña" required>
       <p class="error" id="errorMsg">Fecha o contraseña incorrecta</p>
       <button type="submit">Ingresar</button>
@@ -73,21 +73,24 @@
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      let fecha = document.getElementById("fecha").value;   // nueva fecha
+      let fechaIngresada = document.getElementById("fecha").value; // ejemplo: 22/06/2025
       let password = document.getElementById("password").value;
       let errorMsg = document.getElementById("errorMsg");
 
+      // Normalizamos la fecha al formato YYYY-MM-DD
+      let partes = fechaIngresada.split("/"); // ["22","06","2025"]
+      let fechaNormalizada = `${partes[2]}-${partes[1]}-${partes[0]}`;
+
       // Fecha válida en formato YYYY-MM-DD
-      let fechaValida = "1999-04-11"; 
-      let passwordValida = "12345";
+      let fechaValida = "2025-06-22"; 
+      let passwordValida = "221124";
 
-      if(fecha === fechaValida && password === passwordValida){
-  localStorage.setItem("logueado", "true"); // guardamos estado
-  window.location.href = "index.html"; 
-} else {
-  errorMsg.style.display = "block";
-}
-
+      if(fechaNormalizada === fechaValida && password === passwordValida){
+        localStorage.setItem("logueado", "true"); // guardamos estado
+        window.location.href = "index.html"; 
+      } else {
+        errorMsg.style.display = "block";
+      }
     });
   </script>
 
